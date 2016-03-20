@@ -1,0 +1,20 @@
+<HTML>
+<SCRIPT LANGUAGE="JavaScript">
+// PROG023.HTM
+var x1,x2,paso;
+var salida="";
+var y;
+x1=prompt("Escribe el menor valor de x","");
+x1=parseFloat(x1);
+x2=prompt("Escribe el mayor valor de x","");
+x2=parseFloat(x2);
+paso=prompt("Escribe el incremento de x:","");
+paso=parseFloat(paso);
+for(i=x1;i<=x2;i=i+paso)
+{
+y=i*i-5*i+10;
+salida=salida+i+" "+y+"\n";
+}
+alert(salida);
+</SCRIPT>
+</HTML>

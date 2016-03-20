@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>JavaScript</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+	<div class="navbar navbar-inverse" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<h1 class="textblanco">Operaciones</h1>
+				</div>
+			</div>
+	</div>
+	<div class="col-xs-offset-1 col-xs-4 form-group">
+		<h4>Calculadora</h4>
+		<form name="form" id="form">
+			<label class="label label-primary control-label">Numero 1</label>
+			<input type="text" id="n" name="n"><br>
+			<label class="label label-primary control-label">Numero 2</label>
+			<input type="text" id="n2" name="n2"><br><br>
+			<button class="btn btn-md btn-success btn-xs" onclick="sumar()">Sumar</button>
+			<button class="btn btn-md btn-success btn-xs" onclick="restar()">Restar</button>
+			<button class="btn btn-md btn-success btn-xs" onclick="dividir()">Dividir</button>
+			<button class="btn btn-md btn-success btn-xs" onclick="multiplicar()">Multiplicar</button>
+		</form>
+		<hr>
+	</div>
+	<div class="col-xs-offset-1 col-xs-4">
+		<h4>Funciones trigonometricas</h4>
+		<div class="col-xs-4 form-group">
+			<form name="funciones" id="funciones">
+				<label class="label label-danger control-label">Inserta radianes</label>
+				<input type="text" id="num" name="num">
+				<button class="btn btn-md btn-primary btn-xs" onclick="seno()">Seno</button>
+				<button class="btn btn-md btn-primary btn-xs" onclick="coseno()">Coseno</button>
+				<button class="btn btn-md btn-primary btn-xs" onclick="tangente()">Tangente</button>
+				<button class="btn btn-md btn-primary btn-xs" onclick="cotagente()">Cotagente</button>
+				<button class="btn btn-md btn-primary btn-xs" onclick="secante()">Secante</button>
+				<button class="btn btn-md btn-primary btn-xs" onclick="cosecante()">Cosecante</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
+
+
+
+<script languaje="JavaScript">
+		var n,n2,s,r,m,d,ra;
+		function leer(){
+			n=parseFloat(document.form.n.value);
+			n2=	parseFloat(document.form.n2.value);
+		}
+		function sumar(){
+			leer();
+			s=n+n2;
+			alert(s);
+		}
+		function restar(){
+			leer();
+			r=n-n2;
+			alert(r);
+		}
+		function dividir(){
+			leer();
+			d=n/n2;
+			alert(d);
+		}
+		function multiplicar(){
+			leer();
+			m=n*n2;
+			alert(m);
+		}
+		function leernum(){
+			ra=parseFloat(document.funciones.num.value);
+		}
+		function seno(){
+			leernum();
+			alert(Math.sin(ra));
+		}
+		function coseno(){
+			leernum();
+			alert(Math.cos(ra));
+		}
+		function tangente(){
+			leernum();
+			alert(Math.tan(ra));
+		}
+		function cotagente(){
+			leernum();
+			alert(1/Math.tan(ra));
+		}
+		function secante(){
+			leernum();
+			alert(1/Math.cos(ra));
+		}
+		function cosecante(){
+			leernum();
+			alert(1/Math.sin(ra));
+		}
+
+</script>

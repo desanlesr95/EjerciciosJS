@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Ruleta</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body background="">
+	
+	<div class="container">
+		<div class="navbar navbar-inverse" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="index.html" class="navbar-brand">Inicio</a>
+					<a href="calcu.html" class="navbar-brand">MiniCalculadora</a>
+				</div>
+			</div>
+		</div>
+
+
+	<div class="container">
+	<form name="form" id="form">
+		<label>Puntos</label> 
+		<input type="text" id="fichas" name="fichas" >
+			<div class="row-fluid">
+			<div class="col-xs-2 form-group">
+				<h5>Escoga su opcion</h5>
+				<input type="radio" name="apuesta" id="pares" value="pares">Pares
+				<br><input type="radio" name="apuesta" id="inpares" value="inpares">Inpares
+				<br><input type="radio" name="apuesta" id="docena" value="docena">1-12	
+				<br><input type="radio" name="apuesta" id="docena2" value="docena2">13-24
+				<br><input type="radio" name="apuesta" id="docena3" value="docena3">25-36
+				<br><input type="radio" name="apuesta" id="negros" value="negros">Negros
+				<br><input type="radio" name="apuesta" id="rojos" value="rojos">Rojos
+				<br><input type="radio" name="apuesta" id="numero" value="numero">Numero
+				<br><input type="radio" name="apuesta" id="cero" value="cero">0
+				<br><button onclick="empezar()">Aceptar</button>
+			</div>
+
+
+			<div class="col-xs-4 form-group">
+				<h5>Escoga la apuesta</h5>
+				<div class="col-xs-1">
+					<input type="radio" name="dinero" id="uno" value="1">1	
+					<br><input type="radio" name="dinero" id="cicuenta" value="50">50
+					<br><input type="radio" name="dinero" id="quinientos" value="500">500
+					<br><input type="radio" name="dinero" id="dosmil" value="2000">2,000
+					<br><input type="radio" name="dinero" id="diezmil" value="10000">10,000
+					<br><input type="radio" name="dinero" id="cicuentamil" value="50000">50,000
+					<br><input type="radio" name="dinero" id="doscientosmil" value="200000">200,000
+					<br><input type="radio" name="dinero" id="quinientosmil" value="500000">500,000
+				</div>
+				<div class="col-xs-offset-2 col-xs-1">
+					<input type="radio" name="dinero" id="diez" value="10">10	
+					<br><input type="radio" name="dinero" id="cien" value="100">100
+					<br><input type="radio" name="dinero" id="mil" value="1000">1,000
+					<br><input type="radio" name="dinero" id="cincomil" value="5000">5,000
+					<br><input type="radio" name="dinero" id="veintemil" value="200000">20,000	
+					<br><input type="radio" name="dinero" id="cienmil" value="100000">100,000
+					<br><input type="radio" name="dinero" id="trescientos" value="300000">300,000
+					<br><input type="radio" name="dinero" id="millon" value="1000000">1,000,000	
+				</div>	
+			</div>
+		</form>
+
+			
+
+			<div class="col-xs-5">
+				<img src="img/ruleta2.jpg" alt="ruleta" class="img-responsive img-rounded"><br>
+				<form name="numero" id="numero">
+					<input type="text" name="suerte" id="suerte">
+				</form>
+				
+			</div>
+
+		</div>	
+	</div>
+
+</body>
+</html>
+
+
+
+<script language="JavaScript">
+	var fichas=100,numero,i,modo,cantidad,aleatorio;
+	var mod=false,apu=false;
+
+	//document.form.fichas.value=fichas;
+
+	function numero(){
+		numero=prompt("Inserte el numero");
+	}
+
+
+	function modo(){
+		mod=false;
+		for (i = 0; i <document.form.apuesta.length ; i++) {
+			if(document.form.apuesta[i].checked){
+				bandera=1;
+				mod=true;
+				break;
+			}
+		}
+		if(mod){
+			modo=document.form.apuesta[i].value;	
+		}
+		else{
+			alert("No ha seleccionado un modo");
+		}
+		
+	}
+
+
+	function cantidad(){
+		apu=false;
+		for (i = 0; i <document.form.dinero.length; i++) {
+			if(document.form.dinero[i].checked){
+				apu=true;
+				break;
+			}
+		}
+		if(apu){
+			cantidad=document.form.dinero[i].value;	
+		}
+		else{
+			alert("No ha apostado");
+		}		
+	}
+
+
+	function aleatorio(){
+		aleatorio=Math.round(Math.random()*36);	
+		document.numero.suerte.value=aleatorio;
+	}
+
+
+	function empezar(){
+		modo();
+		cantidad();
+		if(mod&&apu){
+			aleatorio();
+			jugar();
+			alert("Te quedan "+fichas);
+		}
+	}
+
+
+	function jugar(){
+		switch(modo){
+
+			case "pares":{
+				if(aleatorio==0){
+					fichas-=cantidad;
+					alert("Perdiste "+cantidad+" fichas");
+				}
+				else{
+					if(aleatorio%2==0){
+						fichas+=cantidad;
+						alert("Ganaste "+cantidad+" fichas");
+					}
+					else{
+						alert("Perdiste "+cantidad+" fichas");
+						fichas-=cantidad;
+					}
+				}
+				break;
+			}
+
+			case "inpares":{
+				if(aleatorio==0){
+					fichas-=cantidad;
+					alert("Perdiste "+cantidad+" fichas");
+				}
+				else{
+					if(aleatorio%2==0){
+						alert("Perdiste "+cantidad+" fichas");
+						fichas-=cantidad;
+					}
+					else{
+						fichas+=cantidad;
+						alert("Ganaste "+cantidad+" fichas");	
+					}
+				}
+				break;
+			}
+
+			case "docena":{
+				if(aleatorio>=1&&aleatorio<=12){
+					fichas+=cantidad*2;
+					alert("Ganaste "+cantidad*2+" fichas");
+				}
+				else{
+					alert("Perdiste "+cantidad+" fichas");
+					fichas-=cantidad;
+				}
+				break;
+			}
+
+
+			case "docena2":{
+				if(aleatorio>=13&&aleatorio<=24){
+					fichas+=cantidad*2;
+					alert("Ganaste "+cantidad*2+" fichas");
+				}
+				else{
+					alert("Perdiste "+cantidad+" fichas");
+					fichas-=cantidad;
+				}
+				break;
+			}
+			
+
+			case "docena3":{
+				if(aleatorio>=25&&aleatorio<=36){
+					fichas+=cantidad*2;
+					alert("Ganaste "+cantidad*2+" fichas");
+				}
+				else{
+					alert("Perdiste "+cantidad+" fichas");
+					fichas-=cantidad;
+				}
+				break;
+			}
+			
+
+			case "numero":{
+				numero();
+				if(numero<=36&&numero>=1){
+					if(numero==aleatorio){
+						fichas+=cantidad*35;
+						alert("Ganaste "+cantidad*35+" fichas");	
+					}
+					else{
+						alert("Perdiste "+cantidad+" fichas");
+						fichas-=cantidad;
+					}
+				}
+				else{
+					alert("Numero no valido");
+					break;
+				}
+				
+				break;
+			}
+			
+			case "negros":{
+				switch(aleatorio){
+                   	case 1:case 3:case 5:case 7:case 9:case 11:case 14:case 16:case 18:case 21:case 23:case 25:case 29:case 30:case 32:case 34:case 36:
+                   			alert("Perdiste "+cantidad+" fichas");
+							fichas-=cantidad;
+                    break;
+                    default:
+                       	fichas+=cantidad;
+						alert("Ganaste "+cantidad+" fichas");
+				}
+				break;
+			}
+
+
+			case "rojos":{
+				switch(aleatorio){
+                   	case 1:case 3:case 5:case 7:case 9:case 11:case 14:case 16:case 18:case 21:case 23:case 25:case 29:case 30:case 32:case 34:case 36:
+                      	fichas+=cantidad;
+						alert("Ganaste "+cantidad+" fichas");
+                    break;
+                    default:
+                       	alert("Perdiste "+cantidad+" fichas");
+						fichas-=cantidad;
+				}
+				break;
+			}
+
+
+			case "cero":{
+				if (aleatorio==0) {
+					fichas+=cantidad*35;
+					alert("Ganaste "+cantidad*35+" fichas");	
+				}
+				else{
+					alert("Perdiste "+cantidad+" fichas");
+					fichas-=cantidad;
+				}
+				break;
+			}
+		}
+	}
+
+</script>
